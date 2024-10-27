@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+     xmlns:p="http://primefaces.org/ui" >
+
+<h:head>
+	<title>JSF 01 - Kalkulator kredytowy</title>
+</h:head>
+<h:body>
+<p:panel header=" pusty panel do zamknięcia" toggleable="true" closable="true" toggleSpeed="200" style="margin: 1em auto;">
+	<h:form id="bla2">
+		<h:commandLink value="Informacje" action="#{calcBB.info()}" />
+	</h:form>
+</p:panel>
+
+<p:panel header="JSF 01 - Kalkulator kredytowy" toggleable="true" toggleSpeed="200" style="margin: 1em auto;">
+	
+
+	<h:form id="bla">
+		<h:panelGrid id="grid" columns="3" cellpadding="5">
+		
+			<p:outputLabel for="kwota" value="Kwota:"/>
+			<p:inputText id="kwota" value="#{calcBB.kwota}" required="true" requiredMessage="Brak kwoty!"/>
+			<p:message for="kwota"/>
+			
+			<p:outputLabel for="kwota" value="lata:"/>
+			<p:inputText id="lata" value="#{calcBB.lata}" required="true" requiredMessage="Brak lat"/>
+			<p:message for="lata"/>
+			
+			<p:outputLabel for="kwota" value="Oprocentowanie:"/>
+			<p:inputText id="oprocentowanie" value="#{calcBB.oprocentowanie}" required="true" requiredMessage="Brak oprocentowania" />
+			<p:message for="oprocentowanie"/>
+			
+			
+			<p:commandButton value="Oblicz ratę" action="#{calcBB.calc()}" update="@form"/>
+			<p:commandButton value="Oblicz ratę (AJAX)" action="#{calcBB.calc_AJAX()}" update="msg"/>
+
+		</h:panelGrid>
+		
+		<p:messages id="msg" />
+		
+	</h:form>
+</p:panel>
+
+</h:body>
+</html>
