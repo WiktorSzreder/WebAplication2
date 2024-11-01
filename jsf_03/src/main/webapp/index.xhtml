@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+     xmlns:p="http://primefaces.org/ui" >
+
+<h:head>
+	<title>JSF 01 - Kalkulator kredytowy</title>
+</h:head>
+<h:body>
+<p:panel header=" pusty panel do zamknięcia" toggleable="true" closable="true" toggleSpeed="200" style="margin: 1em auto;">
+	<h:form id="bla2">
+		<h:commandLink value="Informacje" action="#{calcBB.info()}" />
+	</h:form>
+</p:panel>
+
+<p:panel header="JSF 01 - Kalkulator kredytowy" toggleable="true" toggleSpeed="200" style="margin: 1em auto;">
+	
+
+	<h:form id="bla">
+		<h:panelGrid id="grid" columns="3" cellpadding="5">
+		
+			<p:outputLabel for="kwota" value="Kwota:"/>
+			<p:inputNumber id="kwota" value="#{calcBB.kwota}" symbol="zł"
+                                symbolPosition="s" required="true" requiredMessage="Brak kwoty!"  validatorMessage="Kwota nie moga byc mniejsza niz 1">
+		         <f:validateDoubleRange minimum="1" />
+			 </p:inputNumber>
+			<p:message for="kwota"/>
+			
+			<p:outputLabel for="lata:" value="lata:"/>
+			<p:inputNumber id="lata" value="#{calcBB.lata}" validatorMessage="Lata nie moga byc wieksze od 50" >
+			 	<f:validateDoubleRange minimum="1" maximum="50" />
+			 	 <f:validateRequired />
+			 </p:inputNumber>
+			<p:message for="lata"/>
+			
+			<p:outputLabel for="oprocentowanie" value="Oprocentowanie:"/>
+			<p:inputNumber id="oprocentowanie" value="#{calcBB.oprocentowanie}" symbol="%"
+                                symbolPosition="s" required="true" requiredMessage="Brak oprocentowania" validatorMessage="Oprocentownie nie moze byc wieksze od 100%" >
+				 <f:validateDoubleRange minimum="1" maximum="100" />
+			 </p:inputNumber>
+			<p:message for="oprocentowanie"/>
+			
+			
+			
+			<p:commandButton value="Oblicz ratę" action="#{calcBB.calc()}" update="@form"/>
+			<p:commandButton value="Oblicz ratę (AJAX)" action="#{calcBB.calc_AJAX()}" update="msg"/>
+
+		</h:panelGrid>
+		
+		<p:messages id="msg" />
+		
+	</h:form>
+</p:panel>
+
+</h:body>
+</html>
